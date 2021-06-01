@@ -6,11 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="./dist/main.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+    crossorigin="anonymous">
+  <script src="./dist/main.js"></script>
   <title>TTR</title>
 </head>
 
 <body>
-  <script src="./dist/main.js"></script>
+  <header>
+    <h1>Type Type Revolution</h1>
+  </header>
+
+  <div class='main'>
+    <div class='color-description'>
+      <h1> Colors </h1>
+      <h2> Blue
+        <p> Decrease speed </p>
+      </h2>
+      <h2> Purple
+        <p> Pause falling </p>
+      </h2>
+      <h2> Red
+        <p> Increase speed </p>
+      </h2>
+      <h2> Green
+        <p> +1 Heart </p>
+      </h2>
+      <h2> Rainbow
+        <p> Mix words </p>
+      </h2>
+    </div>
+
+    <div class='canvas-area'>
+      <canvas id='canvas'></canvas>
+    </div>
+
+    <div class='how-to-play'>
+      <h1> How to Play </h1>
+      <div>
+        <p> Remove words by typing correctly </p>
+        <p> before it hits the ground! </p>
+        <p> Once the word hits the ground you will lose one heart</p>
+        <p> colored word have special effects </p>
+        <p> details on the left </p>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

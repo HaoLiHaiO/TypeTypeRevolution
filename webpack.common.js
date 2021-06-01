@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const outputDir = "./dist";
 
 module.exports = {
-  entry: path.resolve(__dirname, "src", "index.js"), 
+  entry: path.resolve(__dirname, "src", "ttr.js"),
   output: {
     path: path.join(__dirname, outputDir),
     filename: "[name].js",
@@ -68,7 +68,7 @@ module.exports = {
           },
           "css-loader",
           {
-            loader: "sass-loader", 
+            loader: "sass-loader",
             options: {
               implementation: require('sass')
             }

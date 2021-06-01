@@ -2,7 +2,7 @@
   "name": "TTR",
   "version": "1.0.0",
   "description": "skeleton for new JS project",
-  "main": "index.js",
+  "main": "ttr.js",
   "browserslist": [
     "last 1 version",
     "> 1%",
@@ -15,7 +15,9 @@
   },
   "author": "mrcjbradley",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "random-words": "^1.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-optional-chaining": "^7.13.12",
