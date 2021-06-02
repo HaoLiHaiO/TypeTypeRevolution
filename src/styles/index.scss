@@ -102,6 +102,11 @@ header{
   }
 }
 
+.heart-score{
+  display: flex;
+  justify-content: space-between;
+}
+
 #ttr-game{
   border: 2px solid green;
   width: 100%;

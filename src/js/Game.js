@@ -25,7 +25,7 @@ export default class TTR {
     let word = new Word(width, height);
 
     let newEle = document.createElement("h2")
-    newEle.style.left = Math.floor(Math.random() * 100) + 1 + '%';
+    newEle.style.left = Math.floor(Math.random() * 90) + 1 + '%';
     newEle.style.position = 'absolute';
     newEle.appendChild(document.createTextNode(word.word));
     container.append(newEle);
