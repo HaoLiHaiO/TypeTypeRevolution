@@ -4,8 +4,8 @@ export default class Word {
   constructor(width, height) {
     this.x = Math.random() * (width - 20);
     this.y = height;
+    this.speed = 30;
     this.interval = 1500;
-    this.speed = 0.5;
     this.word = randomWords();
     let ran = Math.random();
     if (ran > 0.50) {
@@ -30,10 +30,6 @@ export default class Word {
     ctx.font = '5px Arial';
     ctx.fillStyle = color;
     ctx.fillText(this.word, x, y)
-  }
-
-  populateWord() {
-    return this;
   }
 
   dropWord() {
