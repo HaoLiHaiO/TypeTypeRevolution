@@ -2,8 +2,8 @@ let randomWords = require('random-words');
 
 export default class Word {
   constructor(width, height) {
-    this.x = Math.random() * (width - 20);
-    this.y = height;
+    this.x = Math.random() * (width - 20) + 5;
+    this.y = 20;
     this.interval = 1500;
     this.speed = 0.5;
     this.word = randomWords();
@@ -26,14 +26,10 @@ export default class Word {
   drawWord(ctx) {
     const { x, y, color } = this;
     let scale = window.devicePixelRatio;
-    ctx.scale(scale, scale);
-    ctx.font = '5px Arial';
-    ctx.fillStyle = color;
-    ctx.fillText(this.word, x, y)
-  }
 
-  populateWord() {
-    return this;
+    ctx.font = '10 Arial';
+    ctx.fillStyle = color;
+    ctx.fillText(this.word, x / 2, y / 2)
   }
 
   dropWord() {

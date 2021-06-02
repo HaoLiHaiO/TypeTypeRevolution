@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
     crossorigin="anonymous">
-  <script src="./dist/main.js"></script>
   <title>TTR</title>
 </head>
 
@@ -39,7 +38,15 @@
     </div>
 
     <div class='canvas-area'>
-      <canvas id='canvas'></canvas>
+      <div>
+        <span class='heart'> 0 </span> Sec
+      </div>
+      <div>
+        <span class='score'> 0 </span>
+      </div>
+      <!-- <canvas id='ttr-game' width="100%" height="100%"></canvas> -->
+      <div id='ttr-game'></div>
+      <input type="text" id="typing-input" autofocus>
     </div>
 
     <div class='how-to-play'>
@@ -54,5 +61,6 @@
     </div>
   </div>
 </body>
+<script src="./dist/main.js"></script>
 
 </html>

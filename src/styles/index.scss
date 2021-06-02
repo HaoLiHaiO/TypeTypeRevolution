@@ -50,6 +50,10 @@ input[type="submit"] {
   clear: both;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 header{
   display: flex;
   justify-content: center;
@@ -79,6 +83,12 @@ header{
     grid-row: 1 / 4;
     padding: 10px;
     background-color: lemonchiffon;
+    display: flex;
+    flex-direction: column;
+    #typing-input{
+      border: 2px solid red;
+      font-size: 24px;
+    }
   }
 
   .how-to-play{
@@ -92,8 +102,9 @@ header{
   }
 }
 
-#canvas{
+#ttr-game{
   border: 2px solid green;
   width: 100%;
   height: 100%;
+  position: relative
 }

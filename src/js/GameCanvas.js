@@ -1,12 +1,13 @@
-import Word from './Word';
+import Word from './WordCanvas';
 
 let randomWords = require('random-words');
-let container = document.getElementById('ttr-game')
-// console.log(container)
+
 export default class TTR {
-  constructor() {
-    this.width = container.offsetWidth;
-    this.height = container.offsetTop;
+  constructor(canvas) {
+    this.ctx = canvas.getContext("2d");
+    window.devicePixelRatio = 2;
+    this.width = canvas.width;
+    this.height = canvas.height;
     this.level = 1;
     this.heart = 5;
     this.score = 0;
@@ -23,14 +24,10 @@ export default class TTR {
   generateWords() {
     const { width, height, words, ctx } = this;
     let word = new Word(width, height);
-
-    let newEle = document.createElement("h2")
-    newEle.style.left = Math.floor(Math.random() * 100) + 1 + '%';
-    newEle.style.position = 'absolute';
-    newEle.appendChild(document.createTextNode(word.word));
-    container.append(newEle);
+    console.log(word);
     words.push(word.word);
-
+    console.log(words);
+    word.drawWord(ctx);
   }
 
   handleEnterDown(e) {
