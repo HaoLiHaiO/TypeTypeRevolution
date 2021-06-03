@@ -5,7 +5,7 @@ export default class Word {
   constructor() {
     this.word = randomWords();
     this.y = 0;
-    this.speed = 30;
+    this.speed = random(10, 50);
     this.interval = 1500;
 
     this.newEle = document.createElement("h1");
@@ -38,13 +38,14 @@ export default class Word {
     let res = this.newEle.style.top.replace(regex, "");
     res = parseInt(res)
     res += this.speed;
+    this.y = res;
     this.newEle.style.top = res + 'px';
-    debugger
   }
 
-  drop() {
-    this.y += this.speed;
-  }
+}
 
+function random(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return num;
 }
 

@@ -7,6 +7,8 @@ console.log(bounding);
 
 export class TTR {
   constructor() {
+    this.container = document.getElementById('ttr-game')
+    this.bounding = container.getBoundingClientRect();
     this.width = container.offsetWidth;
     this.height = container.offsetTop;
     this.level = 1;
@@ -15,9 +17,6 @@ export class TTR {
     this.speed = 30;
     this.words = [];
     this.interval = 1000;
-    this.startGame();
-    this.handleEnterDown();
-    this.handleEnterDown = this.handleEnterDown.bind(this);
   }
 
   startGame() {

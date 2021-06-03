@@ -2,26 +2,18 @@ import "./styles/index.scss";
 import { TTR } from './js/Game'
 import Word from './js/Word'
 
-// const canvas = document.getElementById('ttr-game');
-// new TTR(canvas);
-
-// new TTR();
 
 document.addEventListener('DOMContentLoaded', () => {
   let container = document.getElementById('ttr-game')
   let bounding = container.getBoundingClientRect();
-  let width = container.offsetWidth;
-  let height = container.offsetTop;
+  let width = container.width;
+  let height = container.offsetHeight;
   let level = 1;
   let heart = 5;
   let score = 0;
   let speed = 30;
   let words = [];
   let interval = 1000;
-
-  function startGame() {
-
-  }
 
   document.getElementById('score').innerHTML = score;
   document.getElementById('heart').innerHTML = displayHeart(heart);
@@ -38,17 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('typing-input').addEventListener('keypress', function (e) {
     let inputVal = document.getElementById('typing-input').value;
     let ele = document.getElementById(inputVal);
-
     if (e.key === 'Enter' && ele) {
       console.log(ele)
-      ele.parentNode.removeChild(ele)
+      ele.parentNode.removeChild(ele);
+      words = words.filter(el => el.word != ele.id)
+      if (ele.style.color == 'red') {
+        words[Math.floor(Math.random() * words.length)].speed + 150;
+      }
+      if (ele.style.color == 'blue') {
+        words[Math.floor(Math.random() * words.length)].speed - 50;
+      }
+      if (ele.style.color == 'green') {
+        heart += 1;
+        document.getElementById('heart').innerHTML = displayHeart(heart);
+      }
+      if (ele.style.color == 'purple') {
+        words[Math.floor(Math.random() * words.length)].speed = 0;
+      }
       score += 10;
-      debugger
-      /*if ele.col = red => speed++
-      if ele.col = purple => pause
-      if ele.col = green => heart++
-      if ele.col = blue => speed--
-      */
+      document.getElementById('score').innerHTML = score;
     }
     if (e.key === 'Enter') {
       document.getElementById('typing-input').value = '';
@@ -69,27 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let drop = setInterval(function () {
     for (let i = 0; i < words.length; i++) {
       words[i].dropWord();
+      if (words[i].y > height - 20) {
+        debugger
+        let ele = document.getElementById(words[i].word);
+        ele.parentNode.removeChild(ele);
+        words.splice(i, 1);
+        heart -= 1;
+        document.getElementById('heart').innerHTML = displayHeart(heart);
+      }
     }
-  }, 1000)
+    if (heart == 0) {
+      clearInterval(drop)
+    }
+  }.bind(this), 1000)
 
-
-  // function loop() {
-  //   for (let i = 0; i < words.length; i++) {
-  //     words[i].dropWord();
-  //   }
-  // }
-  // requestAnimationFrame(loop);
-
-
-  function populateWords() {
-
-  }
 
   function random(min, max) {
     const num = Math.floor(Math.random() * (max - min + 1)) + min;
     return num;
   }
-  // loop();
 })
 
 
