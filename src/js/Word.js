@@ -1,12 +1,21 @@
 let randomWords = require('random-words');
+let container = document.getElementById('ttr-game');
 
 export default class Word {
-  constructor(width, height) {
-    this.x = Math.random() * (width - 20);
-    this.y = height;
+  constructor() {
+    this.word = randomWords();
+    this.y = 0;
     this.speed = 30;
     this.interval = 1500;
-    this.word = randomWords();
+
+    this.newEle = document.createElement("h1");
+    this.newEle.setAttribute('id', this.word);
+    this.newEle.style.left = Math.floor(Math.random() * 90) + 1 + '%';
+    this.newEle.style.position = 'absolute';
+    this.newEle.style.top = 0;
+    this.newEle.appendChild(document.createTextNode(this.word));
+    container.append(this.newEle);
+
     let ran = Math.random();
     if (ran > 0.50) {
       this.color = 'black'
@@ -21,19 +30,21 @@ export default class Word {
     } else {
       this.color = 'pink'
     }
-  }
-
-  drawWord(ctx) {
-    const { x, y, color } = this;
-    let scale = window.devicePixelRatio;
-    ctx.scale(scale, scale);
-    ctx.font = '5px Arial';
-    ctx.fillStyle = color;
-    ctx.fillText(this.word, x, y)
+    this.newEle.style.color = this.color;
   }
 
   dropWord() {
+    let regex = /[^0-9]/g;
+    let res = this.newEle.style.top.replace(regex, "");
+    res = parseInt(res)
+    res += this.speed;
+    this.newEle.style.top = res + 'px';
+    debugger
+  }
+
+  drop() {
     this.y += this.speed;
   }
+
 }
 
