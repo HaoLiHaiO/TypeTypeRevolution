@@ -24,16 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayHeart(heart) {
     let res = "<strong>"
     for (let i = 0; i < heart; i++) {
-      // res += "💜"
       res += '<i class="fas fa-heart"></i>'
     }
     return res += "</strong>"
   }
 
 
-
-  let btn = document.getElementById('play');
+  let btn = document.getElementById('btn-play');
   btn.addEventListener("click", playClick)
+  let gobtn = document.getElementById('btn-replay');
+  gobtn.addEventListener("click", playClick)
 
   function playClick(e) {
     e.preventDefault();
@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     displaySLH()
     let modal = document.querySelector('.modal');
     modal.classList.add('hide')
-
+    let gomodal = document.querySelector('.gameover-modal');
+    gomodal.classList.add('hide')
     spawnId = setInterval(spawn, 1000)
     dropId = setInterval(drop, 1000)
   }
@@ -56,14 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
     heart = 5;
     score = 0;
     words = [];
+    let scoreDiv = document.getElementById('score');
+    removeAllChildren(scoreDiv)
   }
 
   function gameOver() {
-    while (container.firstChild) {
-      container.removeChild(container.firstChild)
-    }
-    let modal = document.querySelector('.modal');
-    modal.classList.remove('hide')
+    removeAllChildren(container)
+    let scoreDiv = document.getElementById('score');
+    let content = document.createElement('div');
+    content.appendChild(document.createTextNode(score))
+    let goModal = document.querySelector('.gameover-modal');
+    goModal.classList.remove('hide')
   }
 
   document.getElementById('typing-input').addEventListener('keypress', function (e) {
@@ -74,34 +78,31 @@ document.addEventListener('DOMContentLoaded', () => {
       ele.parentNode.removeChild(ele);
       words = words.filter(el => el.word != ele.id)
       if (ele.style.color == 'red' && words.length > 2) {
-        words[Math.floor(Math.random() * words.length)].speed + 150;
+        words[Math.floor(Math.random() * words.length)].speed += 150;
       }
       if (ele.style.color == 'blue' && words.length > 2) {
-        words[Math.floor(Math.random() * words.length)].speed - 50;
+        words[Math.floor(Math.random() * words.length)].speed -= 50;
       }
       if (ele.style.color == 'green' && words.length > 2) {
         heart += 1;
-        document.getElementById('heart').innerHTML = displayHeart(heart);
+        displaySLH();
       }
       if (ele.style.color == 'purple' && words.length > 2) {
         words[Math.floor(Math.random() * words.length)].speed = 0;
       }
       score += 100;
-      document.getElementById('score').innerHTML = score;
+      displaySLH();
 
       if (heart > 0 && words.length == 0) {
-        console.log('hi????')
         level += 1;
-        document.getElementById('level').innerHTML = level;
+        displaySLH()
         spawnId = setInterval(spawn.bind(this), 1000)
-
       }
     }
     if (e.key === 'Enter') {
       document.getElementById('typing-input').value = '';
     }
   });
-
 
 
   function spawn() {
@@ -115,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(spawnId);
     }
   }
-
 
 
   function drop() {
@@ -142,6 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(dropId)
         gameOver();
       }
+    }
+  }
+
+  function removeAllChildren(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild)
     }
   }
 })

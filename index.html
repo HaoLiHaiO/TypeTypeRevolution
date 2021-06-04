@@ -38,12 +38,26 @@
     </div>
 
     <div class='canvas-area'>
+
+
+
       <div class='modal'>
         <div class='modal-overlay'></div>
         <div id='modal-content'>
-          <h1> Hello </h1>
-          <div id='close-modal'></div>
-          <button id='play' class="fas fa-play"></button>
+
+          <div id='close-modal'>
+            <button id='btn-play'> P L A Y</button>
+          </div>
+        </div>
+      </div>
+
+      <div class='gameover-modal hide'>
+        <div class='gameover-modal-overlay'></div>
+        <div id='gameover-modal-content'>
+          <div id='modal-score hide'>Score <span id='score'> </span></div>
+          <div id='close-modal'>
+            <button id='btn-replay'> R E P L A Y</button>
+          </div>
         </div>
       </div>
 

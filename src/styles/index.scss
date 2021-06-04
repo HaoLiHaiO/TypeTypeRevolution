@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
@@ -32,7 +34,6 @@ input[type="text"],
 input[type="submit"],
 textarea,
 button {
-
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -42,7 +43,6 @@ button,
 input[type="submit"] {
   cursor: pointer;
 }
-
 
 .group:after {
   content: "";
@@ -60,6 +60,7 @@ header{
   width: 100%;
   height: 10vh;
   background-color: cadetblue;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .main{
@@ -92,14 +93,15 @@ header{
    
   }
 
-  .modal-overlay{
+  .modal-overlay, .gameover-modal-overlay{
     background-color: rgba(0, 0, 0, 0.603);
     width: 100%;
     height: 100%;
     position: absolute;
+    z-index: 999;
   }
   
-  .modal{
+  .modal, .gameover-modal{
     box-shadow: 0 0 10px black;
     border-radius: 10px;
     position: fixed;
@@ -110,12 +112,14 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
   }
+
   .hide {
     display: none;
   }
 
-  #modal-content{
+  #modal-content, #gameover-modal-content{
     background-color: aquamarine;
     padding: 50px 100px;
     text-align: center;
@@ -123,9 +127,14 @@ header{
     top:0px;
     width: 50%;
     height: 80%;
+    z-index: 999;
   }
 
-  .btn-play{
+  #gameover-modal-content{
+    background-color: darkgoldenrod;
+  }
+
+  #btn-play, #btn-replay{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -137,7 +146,9 @@ header{
   cursor: pointer;
 }
 
-
+#btn-replay{
+  background-color: darkblue;
+}
 
   .how-to-play{
     grid-column: 3;
@@ -159,6 +170,6 @@ header{
   border: 2px solid green;
   width: 100%;
   height: 100%;
-  position: relative
+  position: relative;
 }
 
