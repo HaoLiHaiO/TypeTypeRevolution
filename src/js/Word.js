@@ -34,10 +34,11 @@ export default class Word {
   }
 
   dropWord() {
-    let regex = /[^0-9]/g;
-    let res = this.newEle.style.top.replace(regex, "");
-    res = parseInt(res)
+    // let regex = /[^0-9]/g;
+    // let res = this.newEle.style.top.replace(regex, "");
+    let res = parseInt(this.newEle.style.top)
     res += this.speed;
+    debugger
     this.y = res;
     this.newEle.style.top = res + 'px';
   }
@@ -45,7 +46,10 @@ export default class Word {
 }
 
 function random(min, max) {
-  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  // const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  const num = (Math.random() * (max - min) + min)
+  debugger
+
   return num;
 }
 

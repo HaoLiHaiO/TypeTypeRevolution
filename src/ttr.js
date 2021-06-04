@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-play').addEventListener("click", (e) => playClick(e))
   document.getElementById('btn-replay').addEventListener("click", (e) => playClick(e))
-  document.querySelector('.btn-submit').addEventListener('click', e => saveScore(e))
+  document.getElementById('btn-submit').addEventListener('click', e => saveScore(e))
+  let saveBtn = document.getElementById('btn-submit')
+  let nickname = document.getElementById('nickname')
+  nickname.addEventListener('keyup', () => { saveBtn.disabled = !nickname.value })
 
   function playClick(e) {
     e.preventDefault();
@@ -46,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('hide')
     let gomodal = document.querySelector('.gameover-modal');
     gomodal.classList.add('hide')
-    spawnId = setInterval(spawn, 1000)
-    dropId = setInterval(drop, 1000)
+    spawnId = setInterval(spawn, 1000 / 60)
+    dropId = setInterval(drop, 1000 / 60)
   }
 
   function resetGame() {
@@ -61,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function gameOver() {
     removeAllChildren(container)
+    localStorage.setItem("Score", score)
     let scoreDiv = document.getElementById('score');
     let content = document.createElement('div');
     content.appendChild(document.createTextNode(score))
@@ -105,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function spawn() {
-    let word = new Word(level * 50, level * 100);
+    let word = new Word(level, level * 2);
     words.push(word);
     if (words.length == level * 3) {
       clearInterval(spawnId);
