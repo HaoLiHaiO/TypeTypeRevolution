@@ -44,7 +44,7 @@
       <div class='modal'>
         <div class='modal-overlay'></div>
         <div id='modal-content'>
-
+          <header> W E L C O M E</header>
           <div id='close-modal'>
             <button id='btn-play'> P L A Y</button>
           </div>
@@ -54,7 +54,12 @@
       <div class='gameover-modal hide'>
         <div class='gameover-modal-overlay'></div>
         <div id='gameover-modal-content'>
-          <div id='modal-score hide'>Score <span id='score'> </span></div>
+          <header class='gameover'>G A M E O V E R</header>
+          <h1 id='modal-score'>Score <span id='score'> </span></h1>
+          <form>
+            <input type="text" name="nickname" id="nickname" placeholder="NICKNAME">
+            <button type="submit" class='btn-submit'> S A V E </button>
+          </form>
           <div id='close-modal'>
             <button id='btn-replay'> R E P L A Y</button>
           </div>

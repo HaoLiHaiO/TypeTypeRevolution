@@ -2,7 +2,6 @@ import "./styles/index.scss";
 import { TTR } from './js/Game'
 import Word from './js/Word'
 
-
 document.addEventListener('DOMContentLoaded', () => {
   let container = document.getElementById('ttr-game')
   let bounding = container.getBoundingClientRect();
@@ -30,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  let btn = document.getElementById('btn-play');
-  btn.addEventListener("click", playClick)
-  let gobtn = document.getElementById('btn-replay');
-  gobtn.addEventListener("click", playClick)
+  document.getElementById('btn-play').addEventListener("click", (e) => playClick(e))
+  document.getElementById('btn-replay').addEventListener("click", (e) => playClick(e))
+  document.querySelector('.btn-submit').addEventListener('click', e => saveScore(e))
 
   function playClick(e) {
     e.preventDefault();
@@ -68,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     content.appendChild(document.createTextNode(score))
     let goModal = document.querySelector('.gameover-modal');
     goModal.classList.remove('hide')
+
   }
 
   document.getElementById('typing-input').addEventListener('keypress', function (e) {
@@ -150,6 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
       parent.removeChild(parent.firstChild)
     }
   }
-})
 
+
+  function saveScore(e) {
+    debugger
+    console.log('save button clicked')
+    e.preventDefault();
+    e.stopPropagation()
+  }
+
+
+})
 
