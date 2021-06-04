@@ -4,13 +4,12 @@ import Word from './js/Word'
 
 document.addEventListener('DOMContentLoaded', () => {
   let container = document.getElementById('ttr-game')
-  let bounding = container.getBoundingClientRect();
-  let width = container.offsetWidth;
   let height = container.offsetHeight;
   let level = 1;
   let heart = 5;
   let score = 0;
   let words = [];
+  let spawned = [];
   let spawnId;
   let dropId;
 
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('hide')
     let gomodal = document.querySelector('.gameover-modal');
     gomodal.classList.add('hide')
-    spawnId = setInterval(spawn, 1000 / 60)
+    spawnId = setInterval(spawn, 2000)
     dropId = setInterval(drop, 1000 / 60)
   }
 
@@ -81,10 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ele.parentNode.removeChild(ele);
       words = words.filter(el => el.word != ele.id)
       if (ele.style.color == 'red' && words.length > 2) {
-        words[Math.floor(Math.random() * words.length)].speed += 150;
+        words[Math.floor(Math.random() * words.length)].speed + 1;
       }
       if (ele.style.color == 'blue' && words.length > 2) {
-        words[Math.floor(Math.random() * words.length)].speed -= 50;
+        words[Math.floor(Math.random() * words.length)].speed - 1;
       }
       if (ele.style.color == 'green' && words.length > 2) {
         heart += 1;
@@ -96,10 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
       score += 100;
       displaySLH();
 
-      if (heart > 0 && words.length == 0) {
+      if (heart > 0 && spawned.length > 0 && words.length == 0) {
         level += 1;
+        spawned = []
         displaySLH()
         spawnId = setInterval(spawn.bind(this), 1000)
+      }
+      if (heart == 0) {
+        clearInterval(spawnId)
       }
     }
     if (e.key === 'Enter') {
@@ -109,14 +112,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function spawn() {
-    let word = new Word(level, level * 2);
+    let word = new Word(level);
+
+    spawned.push(word);
+    console.log(spawned);
     words.push(word);
-    if (words.length == level * 3) {
+    if (spawned.length == level * 3) {
+      console.log('all spawned')
       clearInterval(spawnId);
     }
     if (heart == 0) {
+      console.log('gameover')
       gameOver();
       clearInterval(spawnId);
+      clearInterval(dropId);
     }
   }
 
@@ -132,17 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
         heart -= 1;
         document.getElementById('heart').innerHTML = displayHeart(heart);
       }
-      if (container.childElementCount == 0 && heart > 0) {
+      if (container.childElementCount == 0 && spawned.length > 0 && heart > 0) {
         level += 1;
         document.getElementById('level').innerHTML = level;
         spawnId = setInterval(spawn, 1000)
         if (heart == 0) {
           clearInterval(spawnId)
+          clearInterval(dropId)
           gameOver();
         }
       }
       if (heart == 0) {
         clearInterval(dropId)
+        clearInterval(spawnId);
         gameOver();
       }
     }
@@ -154,14 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   function saveScore(e) {
     debugger
     console.log('save button clicked')
     e.preventDefault();
     e.stopPropagation()
   }
-
 
 })
 

@@ -2,10 +2,10 @@ let randomWords = require('random-words');
 let container = document.getElementById('ttr-game');
 
 export default class Word {
-  constructor(min, max) {
+  constructor(n) {
     this.word = randomWords();
     this.y = 0;
-    this.speed = random(min, max);
+    this.speed = random(n);
     this.interval = 1500;
 
     this.newEle = document.createElement("h1");
@@ -45,9 +45,9 @@ export default class Word {
 
 }
 
-function random(min, max) {
+function random(n) {
   // const num = Math.floor(Math.random() * (max - min + 1)) + min;
-  const num = (Math.random() * (max - min) + min)
+  const num = (Math.random() * n + n)
   debugger
 
   return num;

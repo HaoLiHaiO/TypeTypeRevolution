@@ -61,6 +61,8 @@ header{
   height: 10vh;
   background-color: cadetblue;
   font-family: 'Press Start 2P', cursive;
+  align-items: center;
+  font-size: 30px;
 }
 
 .main{
@@ -128,17 +130,42 @@ header{
     width: 50%;
     height: 80%;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   #gameover-modal-content{
     background-color: darkgoldenrod;
+
   }
 
+  #modal-score{
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+  }
+
+  #score-form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    #nickname{
+      border: 2px solid salmon;
+      padding: 10px;
+      
+    }
+    #btn-submit{
+      &:disabled{
+        background-color: gray;
+        color: darkgray;
+      }
+      background-color: darkslateblue;
+      color: white
+    }
+  }
   #btn-play, #btn-replay{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: pink;
   font-size: 20px;
   color: white;
@@ -149,7 +176,6 @@ header{
 #btn-replay{
   background-color: darkblue;
 }
-
   .how-to-play{
     grid-column: 3;
     grid-row: 1/4;
