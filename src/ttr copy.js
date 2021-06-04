@@ -15,56 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let spawnId;
   let dropId;
 
-  function displaySLH() {
-    document.getElementById('score').innerHTML = score;
-    document.getElementById('level').innerHTML = level;
-    document.getElementById('heart').innerHTML = displayHeart(heart);
-  }
+  document.getElementById('score').innerHTML = score;
+  document.getElementById('level').innerHTML = level;
+  document.getElementById('heart').innerHTML = displayHeart(heart);
 
   function displayHeart(heart) {
     let res = "<strong>"
     for (let i = 0; i < heart; i++) {
-      // res += "💜"
-      res += '<i class="fas fa-heart"></i>'
+      res += "💜"
     }
     return res += "</strong>"
   }
 
-
-
-  let btn = document.getElementById('play');
-  btn.addEventListener("click", playClick)
-
-  function playClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    gameStart();
-  }
-
-  function gameStart() {
-    resetGame()
-    displaySLH()
-    let modal = document.querySelector('.modal');
-    modal.classList.add('hide')
-
-    spawnId = setInterval(spawn, 1000)
-    dropId = setInterval(drop, 1000)
-  }
-
-  function resetGame() {
-    level = 1;
-    heart = 5;
-    score = 0;
-    words = [];
-  }
-
-  function gameOver() {
-    while (container.firstChild) {
-      container.removeChild(container.firstChild)
-    }
-    let modal = document.querySelector('.modal');
-    modal.classList.remove('hide')
-  }
 
   document.getElementById('typing-input').addEventListener('keypress', function (e) {
     let inputVal = document.getElementById('typing-input').value;
@@ -100,25 +62,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') {
       document.getElementById('typing-input').value = '';
     }
+
   });
 
 
 
+
+  spawnId = setInterval(spawn, 1000)
+
   function spawn() {
-    let word = new Word(level * 50, level * 100);
+    let word = new Word(level * 10, level * 20);
+    debugger
     words.push(word);
     if (words.length == level * 3) {
       clearInterval(spawnId);
     }
     if (heart == 0) {
-      gameOver();
+      console.log('2nd if')
       clearInterval(spawnId);
     }
+    console.log('outer')
   }
 
-
-
-  function drop() {
+  let drop = setInterval(function () {
     let container = document.getElementById('ttr-game')
     for (let i = 0; i < words.length; i++) {
       words[i].dropWord();
@@ -133,16 +99,55 @@ document.addEventListener('DOMContentLoaded', () => {
         level += 1;
         document.getElementById('level').innerHTML = level;
         spawnId = setInterval(spawn, 1000)
+
         if (heart == 0) {
           clearInterval(spawnId)
-          gameOver();
         }
       }
       if (heart == 0) {
-        clearInterval(dropId)
-        gameOver();
+        clearInterval(drop)
       }
     }
+
+  }.bind(this), 1000)
+
+
+
+  // function spawn() {
+  //   let word = new Word();
+  //   words.push(word);
+  //   if (words.length == 5) {
+  //     console.log(words)
+  //     cancelAnimationFrame(spawnId, dropId);
+  //   }
+  //   spawnId = requestAnimationFrame(spawn)
+  // }
+
+  // spawnId = requestAnimationFrame(spawn)
+
+  // function drop() {
+  //   for (let i = 0; i < words.length; i++) {
+  //     words[i].dropWord();
+  //     if (words[i].y > height - 30) {
+  //       let ele = document.getElementById(words[i].word);
+  //       ele.parentNode.removeChild(ele);
+  //       words.splice(i, 1);
+  //       heart -= 1;
+  //       document.getElementById('heart').innerHTML = displayHeart(heart);
+  //     }
+  //   }
+  //   if (heart == 0) {
+
+  //     cancelAnimationFrame(dropId)
+  //   }
+  //   dropId = requestAnimationFrame(drop)
+  // }
+
+  // dropId = requestAnimationFrame(drop)
+
+  function random(min, max) {
+    const num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return num;
   }
 })
 

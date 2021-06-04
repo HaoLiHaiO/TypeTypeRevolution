@@ -1,44 +1,38 @@
 import Word from './Word';
 
-let container = document.getElementById('ttr-game')
-let bounding = container.getBoundingClientRect();
-let starttime;
-console.log(bounding);
-
 export class TTR {
   constructor() {
     this.container = document.getElementById('ttr-game')
-    this.bounding = container.getBoundingClientRect();
-    this.width = container.offsetWidth;
-    this.height = container.offsetTop;
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetTop;
     this.level = 1;
     this.heart = 5;
     this.score = 0;
     this.words = [];
     this.interval = 1000;
-    requestAnimationFrame(spawn);
-    requestAnimationFrame(drop);
+    this.spawn();
+    this.drop();
   }
 
   spawn() {
     let word = new Word();
     this.words.push(word);
 
-    if (words.length == 5) {
-      cancelAnimationFrame(spawn);
+    if (this.words.length == 5) {
+      cancelAnimationFrame(this.spawn);
     }
 
-    if (words.length < this.level * 3) {
-      requestAnimationFrame(spawn)
+    if (this.words.length < this.level * 3) {
+      requestAnimationFrame(this.spawn).bind(this)
     }
   }
 
 
   drop() {
-    for (let i = 0; i < words.length; i++) {
+    for (let i = 0; i < this.words.length; i++) {
       this.words[i].dropWord();
-      if (words[i].y > height - 30) {
-        let ele = document.getElementById(words[i].word);
+      if (this.words[i].y > this.height - 30) {
+        let ele = document.getElementById(this.words[i].word);
         ele.parentNode.removeChild(ele);
         words.splice(i, 1);
         heart -= 1;
@@ -46,9 +40,9 @@ export class TTR {
       }
     }
     if (heart == 0) {
-      cancelAnimationFrame(drop)
+      cancelAnimationFrame(this.drop)
     }
-    requestAnimationFrame(drop)
+    requestAnimationFrame(this.drop)
   }
 
 

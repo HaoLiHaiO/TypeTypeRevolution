@@ -89,7 +89,55 @@ header{
       border: 2px solid red;
       font-size: 24px;
     }
+   
   }
+
+  .modal-overlay{
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .modal{
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hide {
+    display: none;
+  }
+
+  #modal-content{
+    background-color: aquamarine;
+    padding: 50px 100px;
+    text-align: center;
+    position: relative;
+    top:0px;
+    width: 50%;
+    height: 80%;
+  }
+
+  .btn-play{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: pink;
+  font-size: 20px;
+  color: white;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+
+
 
   .how-to-play{
     grid-column: 3;
@@ -113,3 +161,4 @@ header{
   height: 100%;
   position: relative
 }
+
