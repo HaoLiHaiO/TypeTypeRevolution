@@ -38,7 +38,7 @@ export default class Word {
     // let res = this.newEle.style.top.replace(regex, "");
     let res = parseInt(this.newEle.style.top)
     res += this.speed;
-    debugger
+
     this.y = res;
     this.newEle.style.top = res + 'px';
   }
@@ -48,7 +48,7 @@ export default class Word {
 function random(n) {
   // const num = Math.floor(Math.random() * (max - min + 1)) + min;
   const num = (Math.random() * n + n)
-  debugger
+
 
   return num;
 }

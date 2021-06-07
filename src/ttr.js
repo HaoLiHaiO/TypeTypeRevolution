@@ -142,8 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('heart').innerHTML = displayHeart(heart);
       }
       if (container.childElementCount == 0 && spawned.length > 0 && heart > 0) {
+        debugger
         level += 1;
         document.getElementById('level').innerHTML = level;
+        spawned = []
         spawnId = setInterval(spawn, 1000)
         if (heart == 0) {
           clearInterval(spawnId)
