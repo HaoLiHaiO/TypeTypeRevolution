@@ -2,7 +2,13 @@
 <html lang="en">
 
 <head>
+  <meta property="og:title" content="TYPE TYPE REVOLUTION" />
+  <meta property="og:image" content="project_pic.png" />
+  <meta property="og:description" content="A brief description of your project" />
+  <meta property="og:url" content="https://programmer.github.io/project_name" />
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="./dist/main.css" />
@@ -19,21 +25,21 @@
 
   <div class='main'>
     <div class='color-description'>
-      <h1> Colors </h1>
-      <h2> Blue
-        <p> Decrease speed </p>
+      <h1 id='title'> Colors </h1>
+      <h2> Red
+        <p> Increase one random word's speed </p>
       </h2>
-      <h2> Purple
+      <h2> Yellow
+        <p> Decrease one random word's speed </p>
+      </h2>
+      <h2> Lime
+        <p> Heart +1</p>
+      </h2>
+      <h2> Cayan
         <p> Pause falling </p>
       </h2>
-      <h2> Red
-        <p> Increase speed </p>
-      </h2>
-      <h2> Green
-        <p> +1 Heart </p>
-      </h2>
-      <h2> Rainbow
-        <p> Mix words </p>
+      <h2> Magenta
+        <p> Heart -1 </p>
       </h2>
     </div>
 
@@ -55,11 +61,13 @@
         <div class='gameover-modal-overlay'></div>
         <div id='gameover-modal-content'>
           <header class='gameover'>G A M E O V E R</header>
-          <h1 id='modal-score'>Score <span id='go-score'> </span></h1>
-          <form id="score-form">
-            <input type="text" name="nickname" id="nickname" placeholder="NICKNAME">
-            <button type="submit" id='btn-submit' disabled> S A V E Y O U R S C O R E </button>
-          </form>
+          <div>
+            <h1 id='modal-score'>Score <span id='go-score'> </span></h1>
+            <form id="score-form">
+              <input type="text" name="nickname" id="nickname" placeholder="NICKNAME">
+              <button type="submit" id='btn-submit' disabled> S A V E Y O U R S C O R E </button>
+            </form>
+          </div>
           <div id='close-modal'>
             <button id='btn-replay'> R E P L A Y</button>
           </div>
@@ -77,7 +85,7 @@
     </div>
 
     <div class='how-to-play'>
-      <h1> How to Play </h1>
+      <h1 id='title'> How to Play </h1>
       <div>
         <p> Remove words by typing correctly </p>
         <p> before it hits the ground! </p>

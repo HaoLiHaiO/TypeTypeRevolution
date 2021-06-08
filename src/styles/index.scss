@@ -148,7 +148,7 @@ header{
   }
 
   #modal-content, #gameover-modal-content{
-    background-color: aquamarine;
+    background-color: rgb(0, 179, 176);
     padding: 50px 100px;
     text-align: center;
     position: relative;
@@ -159,6 +159,12 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    border-radius: 1rem;
+    box-shadow: 13px 14px 28px rgb(134 125 125 / 62%), -2px -1px 15px rgb(254 254 254 / 76%);
+    h1{
+      font-size: 25px;
+      margin: 30px;
+    }
   }
 
   #gameover-modal-content{
@@ -170,6 +176,7 @@ header{
     display: flex;
     flex-direction: column;
     font-size: 25px;
+    margin: 20px;
     background-color: transparent;
   }
 
@@ -195,21 +202,26 @@ header{
         color: darkgray;
         box-shadow: none;
       }
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
       background-color: darkslateblue;
-      color: white
+      color: white;
+      box-shadow: 13px 14px 28px rgb(134 125 125 / 62%), -2px -1px 15px rgb(254 254 254 / 76%);
+      border-radius: 1rem;
     }
   }
   #btn-play, #btn-replay{
   background: pink;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
-  padding: 10px 30px;
+  font-weight: bolder;
+  padding: 30px;
   cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 13px 14px 28px rgb(134 125 125 / 62%), -2px -1px 15px rgb(254 254 254 / 76%);
+  border-radius: 1rem;
 }
 
 #btn-replay{
-  background-color: darkblue;
+  background-color: #230168;
 }
   .how-to-play{
     grid-column: 3;
