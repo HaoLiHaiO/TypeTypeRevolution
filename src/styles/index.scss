@@ -149,18 +149,22 @@ header{
   #score-form{
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
     align-items: center;
     #nickname{
       border: 2px solid salmon;
-      padding: 10px;
-      
+      padding: 15px 30px 15px 30px;
     }
     #btn-submit{
+      margin: 20px;
+      padding: 20px;
+      border-radius: 3px;
       &:disabled{
         background-color: gray;
         color: darkgray;
+        box-shadow: none;
       }
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
       background-color: darkslateblue;
       color: white
     }

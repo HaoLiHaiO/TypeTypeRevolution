@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let dropId;
 
   function displaySLH() {
-    document.getElementById('score').innerHTML = score;
+    document.querySelector('.score').innerHTML = score;
     document.getElementById('level').innerHTML = level;
     document.getElementById('heart').innerHTML = displayHeart(heart);
   }
@@ -42,13 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function gameStart() {
-    resetGame()
-    displaySLH()
+    resetGame();
+    displaySLH();
+
     let modal = document.querySelector('.modal');
     modal.classList.add('hide')
     let gomodal = document.querySelector('.gameover-modal');
     gomodal.classList.add('hide')
-    spawnId = setInterval(spawn, 2000)
+    spawnId = setInterval(spawn, 1500)
     dropId = setInterval(drop, 1000 / 60)
   }
 
@@ -57,14 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
     heart = 5;
     score = 0;
     words = [];
-    let scoreDiv = document.getElementById('score');
-    removeAllChildren(scoreDiv)
+    spawned = [];
+    // let scoreDiv = document.getElementById('score');
+    // removeAllChildren(scoreDiv)
   }
 
   function gameOver() {
+    clearInterval(spawnId);
+    clearInterval(dropId);
     removeAllChildren(container)
     localStorage.setItem("Score", score)
-    let scoreDiv = document.getElementById('score');
     let content = document.createElement('div');
     content.appendChild(document.createTextNode(score))
     let goModal = document.querySelector('.gameover-modal');
@@ -95,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       score += 100;
       displaySLH();
 
-      if (heart > 0 && spawned.length > 0 && words.length == 0) {
+      if (heart > 0 && allSpawned() && words.length == 0) {
         level += 1;
         spawned = []
         displaySLH()
@@ -112,11 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function spawn() {
-    let word = new Word(level);
+    if (heart != 0) {
 
-    spawned.push(word);
-    console.log(spawned);
-    words.push(word);
+      let word = new Word(level);
+      spawned.push(word.word);
+      console.log(spawned);
+      words.push(word);
+    }
     if (spawned.length == level * 3) {
       console.log('all spawned')
       clearInterval(spawnId);
@@ -141,21 +146,33 @@ document.addEventListener('DOMContentLoaded', () => {
         heart -= 1;
         document.getElementById('heart').innerHTML = displayHeart(heart);
       }
-      if (container.childElementCount == 0 && spawned.length > 0 && heart > 0) {
-        debugger
-        level += 1;
-        document.getElementById('level').innerHTML = level;
-        spawned = []
-        spawnId = setInterval(spawn, 1000)
-        if (heart == 0) {
-          clearInterval(spawnId)
-          clearInterval(dropId)
-          gameOver();
-        }
-      }
+      // if (container.childElementCount == 0 && allSpawned() && heart > 0) {
+      //   
+      //   level += 1;
+      //   document.getElementById('level').innerHTML = level;
+      //   spawned = []
+      //   spawnId = setInterval(spawn, 1000)
+      //   if (heart == 0) {
+      //     clearInterval(spawnId)
+      //     clearInterval(dropId)
+      //     gameOver();
+      //   }
+      // }
       if (heart == 0) {
         clearInterval(dropId)
         clearInterval(spawnId);
+        gameOver();
+      }
+    }
+    if (container.childElementCount == 0 && allSpawned() && heart > 0) {
+
+      level += 1;
+      document.getElementById('level').innerHTML = level;
+      spawned = []
+      spawnId = setInterval(spawn, 1000)
+      if (heart == 0) {
+        clearInterval(spawnId)
+        clearInterval(dropId)
         gameOver();
       }
     }
@@ -168,10 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveScore(e) {
-    debugger
     console.log('save button clicked')
     e.preventDefault();
     e.stopPropagation()
+  }
+
+  function allSpawned() {
+    return spawned.length == level * 3 ? true : false
   }
 
 })
