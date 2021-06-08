@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let dropId;
 
   function displaySLH() {
-    document.querySelector('.score').innerHTML = score;
+    document.getElementById('score').innerHTML = score;
+    document.getElementById('go-score').innerHTML = score;
     document.getElementById('level').innerHTML = level;
     document.getElementById('heart').innerHTML = displayHeart(heart);
   }
@@ -83,22 +84,27 @@ document.addEventListener('DOMContentLoaded', () => {
       ele.parentNode.removeChild(ele);
       words = words.filter(el => el.word != ele.id)
       if (ele.style.color == 'red' && words.length > 2) {
-        words[Math.floor(Math.random() * words.length)].speed + 1;
+        words[Math.floor(Math.random() * words.length)].speed + 1.5;
       }
-      if (ele.style.color == 'blue' && words.length > 2) {
+      if (ele.style.color == 'yellow' && words.length > 2) {
         words[Math.floor(Math.random() * words.length)].speed - 1;
       }
-      if (ele.style.color == 'green' && words.length > 2) {
+      if (ele.style.color == 'lime' && words.length > 2) {
         heart += 1;
         displaySLH();
       }
-      if (ele.style.color == 'purple' && words.length > 2) {
+      if (ele.style.color == 'cayan' && words.length > 2) {
         words[Math.floor(Math.random() * words.length)].speed = 0;
+      }
+      if (ele.style.color == 'magenta' && words.length > 2) {
+        heart -= 1;
+        displaySLH();
       }
       score += 100;
       displaySLH();
-
+      debugger
       if (heart > 0 && allSpawned() && words.length == 0) {
+        debugger
         level += 1;
         spawned = []
         displaySLH()
@@ -116,13 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function spawn() {
     if (heart != 0) {
-
       let word = new Word(level);
       spawned.push(word.word);
       console.log(spawned);
       words.push(word);
     }
-    if (spawned.length == level * 3) {
+    if (spawned.length == level + 5) {
       console.log('all spawned')
       clearInterval(spawnId);
     }
@@ -191,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function allSpawned() {
-    return spawned.length == level * 3 ? true : false
+    return spawned.length == level + 5 ? true : false
   }
 
 })
