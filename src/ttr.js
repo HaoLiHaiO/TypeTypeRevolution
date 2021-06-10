@@ -1,5 +1,4 @@
 import "./styles/index.scss";
-import { TTR } from './js/Game'
 import Word from './js/Word'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -141,15 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heart != 0) {
       let word = new Word(level);
       spawned.push(word.word);
-      console.log(spawned);
+
       words.push(word);
     }
     if (spawned.length == level + 5) {
-      console.log('all spawned')
       clearInterval(spawnId);
     }
     if (heart == 0) {
-      console.log('gameover')
       gameOver();
       clearInterval(spawnId);
       clearInterval(dropId);
@@ -207,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveScore(e) {
-    console.log('save button clicked')
     document.getElementById('msg').innerHTML = `Your score has been saved ${document.getElementById('nickname').value}`
     e.preventDefault();
     e.stopPropagation()
