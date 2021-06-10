@@ -51,6 +51,13 @@
         <div class='modal-overlay'></div>
         <div id='modal-content'>
           <header> W E L C O M E</header>
+          <div>
+            <p> Remove words by typing correctly </p>
+            <p> before it hits the ground! </p>
+            <p> Once the word hits the ground </p>
+            <p> you will lose one heart</p>
+            <p> colored words have special effects </p>
+          </div>
           <div id='close-modal'>
             <button id='btn-play'> P L A Y</button>
           </div>
@@ -63,6 +70,7 @@
           <header class='gameover'>G A M E O V E R</header>
           <div>
             <h1 id='modal-score'>Score <span id='go-score'> </span></h1>
+            <div id='msg'></div>
             <form id="score-form">
               <input type="text" name="nickname" id="nickname" placeholder="NICKNAME">
               <button type="submit" id='btn-submit' disabled> S A V E Y O U R S C O R E </button>
@@ -85,14 +93,14 @@
     </div>
 
     <div class='how-to-play'>
-      <h1 id='title'> How to Play </h1>
-      <div>
-        <p> Remove words by typing correctly </p>
-        <p> before it hits the ground! </p>
-        <p> Once the word hits the ground you will lose one heart</p>
-        <p> colored word have special effects </p>
-        <p> details on the left </p>
+      <h1 id='title'> HALL OF FAME </h1>
+
+      <div class="container">
+        <div id="highScores" class="flex-center flex-column">
+          <ul id="highScoresList"></ul>
+        </div>
       </div>
+
     </div>
   </div>
 </body>

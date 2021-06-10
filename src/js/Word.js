@@ -3,7 +3,7 @@ let container = document.getElementById('ttr-game');
 
 export default class Word {
   constructor(n) {
-    this.word = randomWords();
+    this.word = this.ranWordExceptScore();
     this.y = 0;
     this.speed = random(n);
     this.interval = 1500;
@@ -24,13 +24,13 @@ export default class Word {
     } else if (0.40 < ran && ran < 0.50) {
       this.color = 'yellow'
     } else if (0.30 < ran && ran < 0.40) {
-      this.color = 'magenta'
+      this.color = 'cyan'
     } else if (0.20 < ran && ran < 0.30) {
       this.color = 'red'
     } else if (0.10 < ran && ran < 0.20) {
       this.color = 'lime'
     } else {
-      this.color = 'cayan'
+      this.color = 'margenta'
     }
     this.newEle.style.color = this.color;
   }
@@ -45,13 +45,24 @@ export default class Word {
     this.newEle.style.top = res + 'px';
   }
 
+  ranWordExceptScore() {
+    let word = randomWords();
+    while (word == 'score') {
+      word = randomWords();
+    }
+    return word
+  }
+
 }
 
 function random(n) {
-  // const num = Math.floor(Math.random() * (max - min + 1)) + min;
-  const num = (Math.random() * n + n)
-
-
+  let num;
+  if (n == 1) {
+    num = (Math.random() + n)
+  }
+  else {
+    num = (Math.random() + (n / 2))
+  }
   return num;
 }
 
