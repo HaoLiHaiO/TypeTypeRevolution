@@ -71,6 +71,24 @@ header{
     background-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);   
     background-clip: text;
     color: transparent;
+    text-align: center;
+  }
+}
+
+#ttr-header{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  h1{
+   grid-column: 2; 
+  }
+  div{
+    grid-column: 3;
+    text-align: center;
+    a>i{
+      background-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);   
+      background-clip: text;
+      color: transparent;
+    }
   }
 }
 
@@ -99,6 +117,7 @@ header{
     font-size: xx-large;
     font-weight: bold;
     margin: 50px 0;
+    color: #fec837;
   }
 
   .canvas-area{
@@ -264,6 +283,7 @@ header{
     flex-direction: column;
     height: 100%;
     justify-content: space-around;
+    padding-bottom: 50px;
 }
 
 .heart-score{
