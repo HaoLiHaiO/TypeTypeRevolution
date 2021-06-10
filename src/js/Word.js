@@ -30,7 +30,7 @@ export default class Word {
     } else if (0.10 < ran && ran < 0.20) {
       this.color = 'lime'
     } else {
-      this.color = 'margenta'
+      this.color = 'magenta'
     }
     this.newEle.style.color = this.color;
   }

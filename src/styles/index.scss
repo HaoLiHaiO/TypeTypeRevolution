@@ -36,7 +36,9 @@ button {
   -moz-appearance: none;
   appearance: none;
 }
-
+ul {
+  list-style-type: none;
+}
 button,
 input[type="submit"] {
   cursor: pointer;
@@ -60,7 +62,7 @@ header{
   background-color: transparent;
   font-weight: bolder;
   font-family: 'Press Start 2P', cursive;
-  background-image: linear-gradient(to bottom, #230168 50%, #ff0095 75%, #0ad8fc 100%);   
+  background-image: linear-gradient(to bottom, #ffd905 45%, #00ffb3 75%, #0ad8fc 100%);   
   background-clip: text;
   color: transparent;
   align-items: center;
@@ -87,10 +89,16 @@ header{
     background-color: rgb(8, 8, 34);
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     border: dotted 7px rgb(241, 254, 0); 
     margin: 10px;
     border-radius: 1rem;
+  }
+
+  #title{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 50px 0;
   }
 
   .canvas-area{
@@ -148,7 +156,7 @@ header{
   }
 
   #modal-content, #gameover-modal-content{
-    background-color: rgb(0, 179, 176);
+    background-color: rgb(8, 8, 34);
     padding: 50px 100px;
     text-align: center;
     position: relative;
@@ -160,16 +168,16 @@ header{
     flex-direction: column;
     justify-content: space-around;
     border-radius: 1rem;
+    border: dotted 7px rgb(241, 254, 0); 
     box-shadow: 13px 14px 28px rgb(134 125 125 / 62%), -2px -1px 15px rgb(254 254 254 / 76%);
     h1{
       font-size: 25px;
       margin: 30px;
     }
-  }
-
-  #gameover-modal-content{
-    background-color: darkgoldenrod;
-
+    div>p{
+      font-size: 25px;
+      margin: 10px;
+    }
   }
 
   #modal-score{
@@ -190,8 +198,14 @@ header{
     padding: 20px;
     align-items: center;
     #nickname{
-      border: 2px solid salmon;
+      border: 5px dotted salmon;
+      border-radius: 1rem;
       padding: 15px 30px 15px 30px;
+       &:focus{
+        outline: none;
+        border-color: salmon;
+        box-shadow: 0px 0px 5px 5px salmon;
+      }
     }
     #btn-submit{
       margin: 20px;
@@ -209,7 +223,7 @@ header{
     }
   }
   #btn-play, #btn-replay{
-  background: pink;
+  background: rgb(245, 176, 0);
   font-size: 25px;
   color: white;
   font-weight: bolder;
@@ -221,19 +235,35 @@ header{
 }
 
 #btn-replay{
-  background-color: #230168;
+  background-color: salmon;
 }
-  .how-to-play{
+  .hall-of-fame{
     grid-column: 3;
     grid-row: 1/4;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     border: dotted 7px rgb(241, 254, 0); 
     margin: 10px;
     border-radius: 1rem;
   }
+}
+
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  > * {
+    font-size: 25px;
+  }
+}
+
+#highScoresList{
+  display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
 }
 
 .heart-score{
